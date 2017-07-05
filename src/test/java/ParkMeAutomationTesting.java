@@ -1,32 +1,8 @@
-import io.github.bonigarcia.wdm.ChromeDriverManager;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-
-import java.util.concurrent.TimeUnit;
 
 import static org.testng.Assert.assertTrue;
 
-public class ParkMeAutomationTesting {
-
-    private WebDriver driver;
-
-    @BeforeTest
-    public void openParkMeHomePage() {
-        /*FirefoxDriverManager.getInstance().setup();
-        driver = new FirefoxDriver();*/
-        ChromeDriverManager.getInstance().setup();
-        driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        driver.get("https://parkme.com/");
-    }
-
-    @AfterTest
-    public void closeBrowser() {
-        driver.close();
-    }
+public class ParkMeAutomationTesting extends TestBase {
 
     @Test
     public void locationSearch() {
