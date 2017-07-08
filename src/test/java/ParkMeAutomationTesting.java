@@ -17,7 +17,7 @@ public class ParkMeAutomationTesting extends TestBase {
         LoginPage login = home.logInToParkMe("kiruha.testing@gmail.com", "08642QwErTy");
         assertTrue(login.loginCheck().contains("kiruha.testing"));
         LoginPage logout = home.logOutFromParkMe();
-        assertTrue(logout.logoutCheck().contains("ВОЙТИ"));
+        assertTrue(logout.logoutCheck().contains("LOG IN"));
     }
 
 }

@@ -1,6 +1,6 @@
-import io.github.bonigarcia.wdm.ChromeDriverManager;
+import io.github.bonigarcia.wdm.FirefoxDriverManager;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 
@@ -15,10 +15,10 @@ public class TestBase {
 
     @BeforeTest
     public void openParkMeHomePage() {
-        /*FirefoxDriverManager.getInstance().setup();
-        driver = new FirefoxDriver();*/
-        ChromeDriverManager.getInstance().setup();
-        driver = new ChromeDriver();
+        FirefoxDriverManager.getInstance().setup();
+        driver = new FirefoxDriver();
+        /*ChromeDriverManager.getInstance().setup();
+        driver = new ChromeDriver();*/
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.get("https://parkme.com/");
     }
