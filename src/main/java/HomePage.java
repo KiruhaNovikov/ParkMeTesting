@@ -13,6 +13,7 @@ public class HomePage {
     public ResultPage searchCityName(String cityName) {
         driver.findElement(By.id("input-destination")).sendKeys(cityName);
         driver.findElement(By.xpath(".//*[@id='search_header']/span/button")).click();
+
         return new ResultPage(driver);
     }
 
@@ -28,6 +29,7 @@ public class HomePage {
     public LoginPage logOutFromParkMe() {
         driver.findElement(By.xpath(".//*[@id='header_fullsize']/div[1]/span[2]/div/div/div[1]/span")).click();
         driver.findElement(By.xpath(".//*[@id='header_fullsize']/div[1]/span[2]/div/div/ul/li[5]/a")).click();
+
         return new LoginPage(driver);
     }
 
