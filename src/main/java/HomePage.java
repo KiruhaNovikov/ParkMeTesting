@@ -30,4 +30,5 @@ public class HomePage {
         driver.findElement(By.xpath(".//*[@id='header_fullsize']/div[1]/span[2]/div/div/ul/li[5]/a")).click();
         return new LoginPage(driver);
     }
+
 }
