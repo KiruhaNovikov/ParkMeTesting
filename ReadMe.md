@@ -1,7 +1,7 @@
-##Hi!
-###Here is a test project for learnin test automation basics
+## Hi!
+### Here is a test project for learnin test automation basics
 
-####How to make a pull request:
+#### How to make a pull request:
 - Pull all the changes from remote branch by using _git pull_
 - Create new brunch, where you will add all your changes by executing command: _git checkout -b <branchname>_ OR
 by creating new branch in your IDE
@@ -23,4 +23,4 @@ its name)
 '''
 OR
 Clicking on that button on GitHub:
-![button image](http://prntscr.com/fw0dnt)
+![button image](https://image.prntscr.com/image/K3fHeSe1TLqaD6J-nxfGeg.png)
