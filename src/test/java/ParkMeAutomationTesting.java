@@ -4,12 +4,12 @@ import static org.testng.Assert.assertTrue;
 
 public class ParkMeAutomationTesting extends TestBase {
 
-   /* @Test
+    @Test(enabled = false)
     public void locationSearch() {
         HomePage home = new HomePage(driver);
         ResultPage result = home.searchCityName("New York");
         assertTrue(result.getCityName().contains("New York Parking"));
-    }*/
+    }
 
     @Test
     public void logInToParkMe() {
