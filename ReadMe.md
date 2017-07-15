@@ -1,5 +1,5 @@
 ## Hi!
-### Here is a test project for learnin test automation basics
+### Here is a test project for learning test automation basics
 
 #### How to make a pull request:
 - Pull all the changes from remote branch by using _git pull_
