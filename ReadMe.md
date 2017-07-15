@@ -1,6 +1,9 @@
 ## Hi!
 ### Here is a test project for learning test automation basics
 
+#### Tasks backlog:
+https://tree.taiga.io/project/boshasiv-aqa-masters/backlog
+
 #### How to make a pull request:
 - Pull all the changes from remote branch by using _git pull_
 - Create new brunch, where you will add all your changes by executing command: **git checkout -b <branchname>** OR
