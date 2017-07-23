@@ -3,7 +3,7 @@ import org.openqa.selenium.WebDriver;
 
 public class LoginPage {
 
-    private final WebDriver driver;
+    WebDriver driver = DriverBuilder.INSTANCE.getDriver();
 
     public LoginPage(WebDriver driver) {
         this.driver = driver;
