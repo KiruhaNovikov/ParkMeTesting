@@ -27,6 +27,9 @@
                             <value>${driverName}</value>
                         </property>
                     </systemProperties>
+                    <includes>
+                        <include>**/*Test.java</include>
+                    </includes>
                 </configuration>
             </plugin>
         </plugins>

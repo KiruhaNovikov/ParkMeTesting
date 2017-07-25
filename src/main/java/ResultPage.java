@@ -3,9 +3,10 @@ import org.openqa.selenium.WebDriver;
 
 public class ResultPage {
 
-    WebDriver driver = DriverBuilder.INSTANCE.getDriver();
+    private WebDriver driver = DriverBuilder.INSTANCE.getDriver();
 
     public ResultPage(WebDriver driver) {
+        Config.loadProperties("ResultPage.properties");
         this.driver = driver;
     }
 

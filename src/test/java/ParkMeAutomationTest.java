@@ -2,16 +2,16 @@ import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertTrue;
 
-public class ParkMeAutomationTesting extends TestBase {
+public class ParkMeAutomationTest extends TestBase {
 
-    @Test(enabled = false)
+    @Test//(enabled = false)
     public void locationSearch() {
         HomePage home = new HomePage(driver);
         ResultPage result = home.searchCityName("New York");
         assertTrue(result.getCityName().contains("New York Parking"));
     }
 
-    @Test
+    @Test//(enabled = false)
     public void logInToParkMe() {
         HomePage home = new HomePage(driver);
         LoginPage login = home.logInToParkMe("kiruha.testing@gmail.com", "08642QwErTy");

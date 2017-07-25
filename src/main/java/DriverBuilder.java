@@ -21,7 +21,7 @@ public enum DriverBuilder {
             }catch (Exception e){
                 throw new ExceptionInInitializerError(e);
             }
-        } else {
+        } else if (driverName.equals("chromedriver")){
             System.setProperty("webdriver.chrome.driver", "chromedriver");
             ChromeOptions options = new ChromeOptions();
             try{
@@ -31,6 +31,9 @@ public enum DriverBuilder {
             }catch (Exception e){
                 throw new ExceptionInInitializerError(e);
             }
+        } else{
+            throw new ExceptionInInitializerError("No driver initialized " +
+                    "under driverName. Use mvn test -DdriverName=chromedriver or similar");
         }
     }
 
