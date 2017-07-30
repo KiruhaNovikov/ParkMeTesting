@@ -3,16 +3,16 @@ import org.openqa.selenium.WebDriver;
 
 public class HomePage {
 
-
-    private final WebDriver driver;
+    private WebDriver driver = DriverBuilder.INSTANCE.getDriver();
 
     public HomePage(WebDriver driver) {
+        Config.loadProperties("HomePage.properties");
         this.driver = driver;
     }
 
     public ResultPage searchCityName(String cityName) {
-        driver.findElement(By.id("input-destination")).sendKeys(cityName);
-        driver.findElement(By.xpath(".//*[@id='search_header']/span/button")).click();
+        driver.findElement(By.id(Config.getSetting("search_field"))).sendKeys(cityName);
+        driver.findElement(By.xpath(Config.getSetting("search_button"))).click();
 
         return new ResultPage(driver);
     }
@@ -32,5 +32,4 @@ public class HomePage {
 
         return new LoginPage(driver);
     }
-
 }
