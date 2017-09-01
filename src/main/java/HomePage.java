@@ -1,5 +1,6 @@
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.*;
+import org.apache.commons.codec.binary.Base64;
 
 
 public class HomePage extends Page {
@@ -31,10 +32,13 @@ public class HomePage extends Page {
     @FindBy(xpath = ".//*[@id='header_fullsize']/div[1]/span[2]/div/span")
     private WebElement successfulLogin;
 
-    @FindBy(xpath = ".//*[@id='login']/div/div[3]/label")
-    private WebElement loginErrorText;
+    // TODO: move crypto to correct place
+    private String decrypt(String encryptedString) {
+        byte[] byteArray = Base64.decodeBase64(encryptedString.getBytes());
+        return new String(byteArray);
+    }
 
-
+    // TODO: need to resolve the issue with not used return values
     public SearchResultPage searchCityByName() {
         searchField.sendKeys(Config.getSetting("testCity"));
         searchButton.click();
@@ -42,18 +46,14 @@ public class HomePage extends Page {
     }
 
     public boolean checkifLoginCorrect() {
-        return successfulLogin.getText().contains(Config.getSetting("correctUsername"));
-    }
-
-    public boolean checkLoginErrorMessage() {
-        return loginErrorText.getText().contains(Config.getSetting("incorrectLoginMessage"));
+        return successfulLogin.getText().contains(decrypt(Config.getSetting("correctUsernameBase64")));
     }
 
     // TODO: need to move login logout method to Page class as it is static
     public void login() {
         loginPageButtonLink.click();
-        usernameField.sendKeys(Config.getSetting("correctUsername"));
-        passwordField.sendKeys(Config.getSetting("correctPassword"));
+        usernameField.sendKeys(decrypt(Config.getSetting("correctUsernameBase64")));
+        passwordField.sendKeys(decrypt(Config.getSetting("correctPasswordBase64")));
         loginButton.click();
     }
 

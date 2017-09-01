@@ -3,6 +3,8 @@ import org.testng.annotations.*;
 
 public class ParkMeAutomationTest extends TestBase {
 
+    // TODO: need to redesign methods to be more generic
+    // TODO: discuss test design methods in our scope
     @Test()//enabled = false)
     public void locationSearch() {
         homePage.searchCityByName();
@@ -19,7 +21,7 @@ public class ParkMeAutomationTest extends TestBase {
     @Test()//enabled = false)
     public void login_negative(){
         homePage.login_negative();
-        homePage.checkLoginErrorMessage();
+        loginPage.checkLoginErrorMessage();
     }
 
     @Test()//enabled = false)
