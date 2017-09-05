@@ -13,20 +13,26 @@ public class ParkMeAutomationTest extends TestBase {
 
     @Test()//enabled = false)
     public void login_positive() {
-        homePage.login();
-        homePage.checkifLoginCorrect();
-        homePage.logout();
+        page.login(
+                Config.getSetting("correctUsernameBase64"),
+                Config.getSetting("correctPasswordBase64"));
+        page.checkifLoginCorrect();
+        page.logout();
     }
 
     @Test()//enabled = false)
     public void login_negative(){
-        homePage.login_negative();
+        page.login(
+                Config.getSetting("incorrectUsername"),
+                Config.getSetting("incorrectPassword"));
         loginPage.checkLoginErrorMessage();
     }
 
     @Test()//enabled = false)
     public void logout(){
-        homePage.login();
-        homePage.logout();
+        page.login(
+                Config.getSetting("correctUsernameBase64"),
+                Config.getSetting("correctPasswordBase64"));
+        page.logout();
     }
 }
