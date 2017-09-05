@@ -11,7 +11,7 @@ public class HomePage extends Page {
     @FindBy(xpath = ".//*[@id='search_header']/span/button")
     private WebElement searchButton;
 
-    @FindBy(xpath = ".//*[@id='header_fullsize']/div/span[2]/div[1]/ul[1]/li[2]/a")
+    @FindBy(xpath = ".//a[@class='uppercase nav-link header-log-in']")
     private WebElement loginPageButtonLink;
 
     @FindBy(id = "id_username")
@@ -23,13 +23,13 @@ public class HomePage extends Page {
     @FindBy(id = "login-btn")
     private WebElement loginButton;
 
-    @FindBy(xpath = ".//*[@id='header_fullsize']/div[1]/span[2]/div/div/div[1]/span")
+    @FindBy(xpath = ".//div[@class='header-toggle header-name-toggle nav-link uppercase' and @data-toggle='dropdown']")
     private WebElement logoutSpan;
 
-    @FindBy(xpath = ".//*[@id='header_fullsize']/div[1]/span[2]/div/div/ul/li[5]/a")
+    @FindBy(xpath = ".//a[@class='header-sign-out']")
     private WebElement logoutButton;
 
-    @FindBy(xpath = ".//*[@id='header_fullsize']/div[1]/span[2]/div/span")
+    @FindBy(xpath = ".//span[@class='header-email']")
     private WebElement successfulLogin;
 
     // TODO: move crypto to correct place
