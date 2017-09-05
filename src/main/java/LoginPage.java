@@ -4,7 +4,7 @@ import org.openqa.selenium.support.FindBy;
 
 public class LoginPage extends Page {
 
-    @FindBy(xpath = ".//*[@id='login']/div/div[3]/label")
+    @FindBy(xpath = ".//label[@class='reg-error']")
     private WebElement loginErrorText;
 
     public boolean checkLoginErrorMessage() {
