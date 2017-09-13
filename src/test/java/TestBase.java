@@ -1,15 +1,20 @@
-import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 
 
-public class TestBase {
+public class TestBase extends Page {
 
-    WebDriver driver = DriverBuilder.INSTANCE.getDriver();
+    // TODO: fix can be package private warning
+    public HomePage homePage = new HomePage();
+    public SearchResultPage searchResultPage = new SearchResultPage();
+    public LoginPage loginPage = new LoginPage();
+    public Page page = new Page();
 
     @BeforeTest
-    public void openParkMeHomePage() {
-        driver.get("https://parkme.com/");
+    @BeforeMethod
+    public void openHomePage() {
+        driver.get(Config.getSetting("homepageURL"));
     }
 
     @AfterTest

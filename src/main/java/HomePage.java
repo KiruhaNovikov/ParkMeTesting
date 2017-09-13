@@ -1,35 +1,20 @@
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.*;
 
-public class HomePage {
 
-    private WebDriver driver = DriverBuilder.INSTANCE.getDriver();
+public class HomePage extends Page {
 
-    public HomePage(WebDriver driver) {
-        Config.loadProperties("HomePage.properties");
-        this.driver = driver;
-    }
+    @FindBy(id = "input-destination")
+    private WebElement searchField;
 
-    public ResultPage searchCityName(String cityName) {
-        driver.findElement(By.id(Config.getSetting("search_field"))).sendKeys(cityName);
-        driver.findElement(By.xpath(Config.getSetting("search_button"))).click();
+    @FindBy(xpath = ".//*[@id='search_header']/span/button")
+    private WebElement searchButton;
 
-        return new ResultPage(driver);
-    }
 
-    public LoginPage logInToParkMe(String login, String password) {
-        driver.findElement(By.xpath(".//*[@id='header_fullsize']/div/span[2]/div[1]/ul[1]/li[2]/a")).click();
-        driver.findElement(By.id("id_username")).sendKeys(login);
-        driver.findElement(By.id("id_password")).sendKeys(password);
-        driver.findElement(By.id("login-btn")).click();
-
-        return new LoginPage(driver);
-    }
-
-    public LoginPage logOutFromParkMe() {
-        driver.findElement(By.xpath(".//*[@id='header_fullsize']/div[1]/span[2]/div/div/div[1]/span")).click();
-        driver.findElement(By.xpath(".//*[@id='header_fullsize']/div[1]/span[2]/div/div/ul/li[5]/a")).click();
-
-        return new LoginPage(driver);
+    // TODO: need to resolve the issue with not used return values
+    public SearchResultPage searchCityByName() {
+        searchField.sendKeys(Config.getSetting("testCity"));
+        searchButton.click();
+        return new SearchResultPage();
     }
 }

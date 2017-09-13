@@ -1,26 +1,38 @@
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
-import static org.testng.Assert.assertTrue;
 
 public class ParkMeAutomationTest extends TestBase {
 
-    @Test//(enabled = false)
+    // TODO: need to redesign methods to be more generic
+    // TODO: discuss test design methods in our scope
+    @Test()//enabled = false)
     public void locationSearch() {
-        HomePage home = new HomePage(driver);
-        ResultPage result = home.searchCityName("New York");
-        assertTrue(result.getCityName().contains("New York Parking"));
+        homePage.searchCityByName();
+        searchResultPage.correctSearchCity();
     }
 
-    @Test//(enabled = false)
-    public void logInToParkMe() {
-        HomePage home = new HomePage(driver);
-        LoginPage login = home.logInToParkMe("kiruha.testing@gmail.com", "08642QwErTy");
-        assertTrue(login.loginCheck().contains("kiruha.testing"));
-        LoginPage logout = home.logOutFromParkMe();
-        login = home.logInToParkMe("kiruha.testing", "08642QwErTy");
-        assertTrue(login.loginErrorMessage().contains("Please enter a valid email address"));
-        //logout = home.logOutFromParkMe();
-        //assertTrue(logout.logoutCheck().contains("LOG IN"));
+    @Test()//enabled = false)
+    public void login_positive() {
+        page.login(
+                Config.getSetting("correctUsernameBase64"),
+                Config.getSetting("correctPasswordBase64"));
+        page.checkifLoginCorrect();
+        page.logout();
     }
 
+    @Test()//enabled = false)
+    public void login_negative(){
+        page.login(
+                Config.getSetting("incorrectUsername"),
+                Config.getSetting("incorrectPassword"));
+        loginPage.checkLoginErrorMessage();
+    }
+
+    @Test()//enabled = false)
+    public void logout(){
+        page.login(
+                Config.getSetting("correctUsernameBase64"),
+                Config.getSetting("correctPasswordBase64"));
+        page.logout();
+    }
 }

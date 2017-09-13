@@ -1,24 +1,13 @@
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
-public class LoginPage {
 
-    private WebDriver driver = DriverBuilder.INSTANCE.getDriver();
+public class LoginPage extends Page {
 
-    public LoginPage(WebDriver driver) {
-        Config.loadProperties("LoginPage.properties");
-        this.driver = driver;
-    }
+    @FindBy(xpath = ".//label[@class='reg-error']")
+    private WebElement loginErrorText;
 
-    public String loginCheck() {
-        return driver.findElement(By.xpath(".//*[@id='header_fullsize']/div[1]/span[2]/div/span")).getText();
-    }
-
-    public String loginErrorMessage() {
-        return driver.findElement(By.xpath(".//*[@id='login']/div/div[3]/label")).getText();
-    }
-
-    public String logoutCheck() {
-        return driver.findElement(By.xpath(".//*[@id='header_fullsize']/div/span[2]/div[1]/ul[1]/li[2]/a")).getText();
+    public boolean checkLoginErrorMessage() {
+        return loginErrorText.getText().contains(Config.getSetting("incorrectLoginMessage"));
     }
 }
