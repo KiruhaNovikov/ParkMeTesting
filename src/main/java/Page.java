@@ -3,6 +3,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import ru.yandex.qatools.allure.annotations.Step;
 
 
 public class Page {
@@ -41,6 +42,7 @@ public class Page {
         return new String(byteArray);
     }
 
+    @Step("Step to login to ParkMe website")
     public void login(String userName, String passwd) {
         loginPageButtonLink.click();
         usernameField.sendKeys(decrypt(userName));
@@ -52,6 +54,7 @@ public class Page {
         return successfulLogin.getText().contains(decrypt(Config.getSetting("correctUsernameBase64")));
     }
 
+    @Step("Step to logout from the web site")
     public void logout() {
         logoutSpan.click();
         logoutButton.click();

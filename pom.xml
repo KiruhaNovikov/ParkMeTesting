@@ -6,11 +6,22 @@
 
     <groupId>www.parkme.com</groupId>
     <artifactId>ParkMeProject</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>0.1-SNAPSHOT</version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <maven.surefire.plugin>2.18.1</maven.surefire.plugin>
+        <ghostdriver>2.1.0</ghostdriver>
+        <phantomjsdriver>1.2.0</phantomjsdriver>
+        <selenium.java>3.4.0</selenium.java>
+        <testng>6.8</testng>
+        <webdrivermanager>1.7.0</webdrivermanager>
+        <driver.name>chromedriver</driver.name>
+        <aspectj.version>1.8.10</aspectj.version>
+        <allure.maven>2.8</allure.maven>
+        <allure.version>1.5.4</allure.version>
+        <allure.maven.plugin>2.6</allure.maven.plugin>
     </properties>
 
     <repositories>
@@ -25,48 +36,86 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.12.4</version>
+                <version>${maven.surefire.plugin}</version>
                 <configuration>
+                    <testFailureIgnore>false</testFailureIgnore>
+                    <argLine>
+                        -Xmx1024m -javaagent:${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar
+                    </argLine>
                     <systemProperties>
                         <property>
                             <name>driverName</name>
-                            <value>${driverName}</value>
+                            <value>${driver.name}</value>
                         </property>
                     </systemProperties>
                     <includes>
                         <include>**/*Test.java</include>
                     </includes>
                 </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.aspectj</groupId>
+                        <artifactId>aspectjweaver</artifactId>
+                        <version>${aspectj.version}</version>
+                    </dependency>
+                </dependencies>
             </plugin>
         </plugins>
     </build>
+
+    <reporting>
+        <excludeDefaults>true</excludeDefaults>
+        <plugins>
+            <plugin>
+                <groupId>io.qameta.allure</groupId>
+                <artifactId>allure-maven</artifactId>
+                <version>${allure.maven}</version>
+            </plugin>
+        </plugins>
+    </reporting>
 
     <dependencies>
         <dependency>
             <groupId>com.github.detro</groupId>
             <artifactId>ghostdriver</artifactId>
-            <version>2.1.0</version>
+            <version>${ghostdriver}</version>
         </dependency>
         <dependency>
             <groupId>com.github.detro</groupId>
             <artifactId>phantomjsdriver</artifactId>
-            <version>1.2.0</version>
+            <version>${phantomjsdriver}</version>
         </dependency>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>3.4.0</version>
+            <version>${selenium.java}</version>
         </dependency>
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
-            <version>6.8</version>
+            <version>${testng}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
-            <version>1.7.0</version>
+            <version>${webdrivermanager}</version>
+        </dependency>
+        <dependency>
+            <groupId>ru.yandex.qatools.allure</groupId>
+            <artifactId>allure-testng-adaptor</artifactId>
+            <version>${allure.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>testng</groupId>
+                    <artifactId>testng</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>ru.yandex.qatools.allure</groupId>
+            <artifactId>allure-maven-plugin</artifactId>
+            <version>${allure.maven.plugin}</version>
         </dependency>
     </dependencies>
 </project>
